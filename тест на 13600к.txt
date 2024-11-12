@@ -1,0 +1,46 @@
+﻿// * Summary *
+
+BenchmarkDotNeне t v0.14.0, Windows 10
+13th Gen Intel Core i5-13600K, 1 CPU, 20 logical and 14 physical cores
+.NET SDK 8.0.100
+  [Host]     : .NET 6.0.28 (6.0.2824.12007), X64 RyuJIT AVX2
+  DefaultJob : .NET 6.0.28 (6.0.2824.12007), X64 RyuJIT AVX2
+
+
+| Method                                       | Mean          | Error         | StdDev        | Ratio     | RatioSD  | Gen0   | Gen1   | Allocated | Alloc Ratio |
+|--------------------------------------------- |--------------:|--------------:|--------------:|----------:|---------:|-------:|-------:|----------:|------------:|
+| DirectFunc_NoNull                            |      2.930 ns |     0.0915 ns |     0.0811 ns |      1.00 |     0.04 |      - |      - |         - |          NA |
+| Static_CachedExpression_NoNull               |    287.552 ns |     6.6860 ns |    19.5034 ns |     98.22 |     7.16 | 0.0439 |      - |     552 B |          NA |
+| Static_UncachedExpression_NoNull             | 63,666.915 ns | 1,869.7477 ns | 5,424.4776 ns | 21,747.22 | 1,938.71 | 0.3357 | 0.1526 |    4344 B |          NA |
+| Guard_CachedExpression_NoNull                |  1,233.420 ns |    13.2838 ns |    11.7758 ns |    421.31 |    12.22 | 0.1078 |      - |    1360 B |          NA |
+| Guard_Setuped_CachedExpression_NoNull        |  1,277.467 ns |     5.8647 ns |     5.4858 ns |    436.35 |    12.13 | 0.1059 |      - |    1336 B |          NA |
+| Guard_Polled_CachedExpression_NoNull         |  1,290.475 ns |    15.1410 ns |    14.1629 ns |    440.80 |    12.99 | 0.1078 |      - |    1360 B |          NA |
+| Guard_Polled_Setuped_CachedExpression_NoNull |  1,264.117 ns |    33.0917 ns |    91.1442 ns |    431.79 |    33.17 | 0.1059 |      - |    1336 B |          NA |
+
+// * Hints *
+Outliers
+  Benchmarks.DirectFunc_NoNull: Default                            -> 1 outlier  was  removed, 2 outliers were detected (5.51 ns, 5.95 ns)
+  Benchmarks.Static_CachedExpression_NoNull: Default               -> 2 outliers were removed, 5 outliers were detected (162.81 ns..271.82 ns, 309.77 ns, 311.43 ns)
+  Benchmarks.Static_UncachedExpression_NoNull: Default             -> 3 outliers were removed, 9 outliers were detected (22.21 μs..63.60 μs, 65.34 μs..65.52 μs)
+  Benchmarks.Guard_CachedExpression_NoNull: Default                -> 1 outlier  was  removed (1.28 μs)
+  Benchmarks.Guard_Polled_Setuped_CachedExpression_NoNull: Default -> 12 outliers were removed, 15 outliers were detected (693.96 ns..985.81 ns, 1.31 μs..1.32 μs)
+
+// * Legends *
+  Mean        : Arithmetic mean of all measurements
+  Error       : Half of 99.9% confidence interval
+  StdDev      : Standard deviation of all measurements
+  Ratio       : Mean of the ratio distribution ([Current]/[Baseline])
+  RatioSD     : Standard deviation of the ratio distribution ([Current]/[Baseline])
+  Gen0        : GC Generation 0 collects per 1000 operations
+  Gen1        : GC Generation 1 collects per 1000 operations
+  Allocated   : Allocated memory per single operation (managed only, inclusive, 1KB = 1024B)
+  Alloc Ratio : Allocated memory ratio distribution ([Current]/[Baseline])
+  1 ns        : 1 Nanosecond (0.000000001 sec)
+
+// * Diagnostic Output - MemoryDiagnoser *
+
+
+// ***** BenchmarkRunner: End *****
+Run time: 00:10:18 (618.56 sec), executed benchmarks: 7
+
+Global total time: 00:10:24 (624.71 sec), executed benchmarks: 7 1,264.117 ns |    33.0917 ns |    91.1442 ns |    431.79 |    33.17 | 0.1059 |      - |    1336 B |          NA |

@@ -11,6 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guard.Static", "Guard.Stati
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guard.Polled", "Guard.Polled\Guard.Polled.csproj", "{075CA14E-B7F2-46C2-9842-3AE4D04C0C6B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Benchmarks", "Benchmarks", "{74C523D2-3F75-459A-9059-0A3D24BDC366}"
+	ProjectSection(SolutionItems) = preProject
+		тест на 13600к.txt = тест на 13600к.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
